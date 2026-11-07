@@ -1,6 +1,6 @@
 # 생성형 AI 기반 생산·품질 데이터 분석 및 시각화 — 실습 워크시트
 
-성결대학교 산업경영공학과 4학년 | 80분 | Google Colab·Gemini·Julius AI(선택)
+성결대학교 산업경영공학과 4학년 |  Google Colab·Gemini·Julius AI(선택)
 
 ## 실습 목표와 현장 상황
 

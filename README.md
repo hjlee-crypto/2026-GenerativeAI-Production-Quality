@@ -2,13 +2,11 @@
 
 **Generative AI for Production and Quality Data Analysis & Visualization**
 
-성결대학교 산업경영공학과 4학년 특강
+**성결대학교 산업경영공학과 4학년 특강**
 
 - **강의:** 이현주 교수 | 한성대학교 AI응용학과
 - **교육 시간:** 90분
 - **실습 도구:** Google Colab, Google Gemini, Julius AI
-- **GitHub Repository:** `2026-GenerativeAI-Production-Quality`
-
 
 ---
 
@@ -25,35 +23,55 @@
 3. 생산 실적 비교 차트 및 불량 유형 파레토 차트 작성
 4. AI 분석 결과 검증 및 생산·품질 개선 방안 도출
 
-## 2. 실습자료 다운로드
-
-1. 이 GitHub 저장소 상단의 **Code** 버튼을 클릭합니다.
-2. **Download ZIP**을 선택합니다.
-3. 다운로드한 ZIP 파일의 압축을 해제합니다.
-4. `data` 폴더와 `notebooks` 폴더를 확인합니다.
-
-GitHub 계정이 없어도 공개 저장소의 자료를 다운로드할 수 있습니다.
-
-### 실습자료 구성
+## 2. 실습자료 구성
 
 ```text
-AI-Production-Quality-Workshop/
+2026-GenerativeAI-Production-Quality/
 ├── README.md
 ├── data/
 │   ├── production_daily.csv
 │   └── defect_types.csv
-├── notebooks/
-│   └── production_quality_workshop_DRIVE.ipynb
-└── docs/
-    ├── PROMPTS.md
-    └── WORKSHEET.md
+├── docs/
+│   ├── PROMPTS.md
+│   ├── JULIUS_AI_PRACTICE.md
+│   ├── INSTRUCTOR_GUIDE.md
+│   ├── STUDENT_WORKSHEET_DRIVE_GITHUB.md
+│   ├── WHY_THIS_PRACTICE.md
+│   └── WORKSHEET.md
+└── notebooks/
+    ├── production_quality_workshop_DRIVE.ipynb
+    └── production_quality_workshop.ipynb
 ```
 
-## 3. Google Colab 실습 준비
+### 주요 파일 안내
+
+| 구분 | 파일 | 내용 |
+|---|---|---|
+| 생산 데이터 | `production_daily.csv` | 생산계획 및 실적 분석 |
+| 품질 데이터 | `defect_types.csv` | 불량 유형 및 파레토 분석 |
+| 실습 노트북 | `production_quality_workshop_DRIVE.ipynb` | Google Drive 연동 실습 |
+| 실습 노트북 | `production_quality_workshop.ipynb` | 일반 Colab 실습 |
+| AI 활용 | `PROMPTS.md` | 생성형 AI 분석 프롬프트 |
+| AI 활용 | `JULIUS_AI_PRACTICE.md` | Julius AI 실습 안내 |
+| 실습 안내 | `STUDENT_WORKSHEET_DRIVE_GITHUB.md` | Google Drive 및 GitHub 활용 안내 |
+| 실습 안내 | `WORKSHEET.md` | 생산·품질 분석 실습 활동 |
+| 실습 안내 | `WHY_THIS_PRACTICE.md` | 실습 목적 및 업무 활용 |
+| 운영 자료 | `INSTRUCTOR_GUIDE.md` | 교수자용 실습 운영 안내 |
+
+## 3. 실습자료 다운로드
+
+1. GitHub 저장소 상단의 **Code** 버튼을 클릭합니다.
+2. **Download ZIP**을 선택합니다.
+3. 다운로드한 ZIP 파일의 압축을 해제합니다.
+4. `data`, `docs`, `notebooks` 폴더를 확인합니다.
+
+GitHub 계정이 없어도 공개 저장소의 자료를 다운로드할 수 있습니다.
+
+## 4. Google Colab 실습 준비
 
 ### ① 본인 Google Drive에 자료 저장
 
-본인의 Google Drive에 `production_quality_ai_workshop` 폴더를 생성하고, 다운로드한 실습자료를 다음 구조로 저장합니다.
+Google Drive에 `production_quality_ai_workshop` 폴더를 생성하고 다음과 같이 실습자료를 업로드합니다.
 
 ```text
 내 드라이브/
@@ -62,28 +80,21 @@ AI-Production-Quality-Workshop/
     │   ├── production_daily.csv
     │   └── defect_types.csv
     └── notebooks/
-        └── production_quality_workshop_DRIVE.ipynb
+        ├── production_quality_workshop_DRIVE.ipynb
+        └── production_quality_workshop.ipynb
 ```
-
-폴더명과 파일명은 변경하지 않는 것을 권장합니다.
 
 ### ② Google Colab 실행
 
 1. [Google Drive](https://drive.google.com/)에 로그인합니다.
-2. 업로드한 `production_quality_workshop_DRIVE.ipynb` 파일을 찾습니다.
-3. 파일을 마우스 오른쪽 버튼으로 클릭합니다.
-4. **연결 앱 → Google Colaboratory**를 선택합니다.
-5. Colab이 열리면 노트북을 실행합니다.
+2. `notebooks` 폴더에서 `production_quality_workshop_DRIVE.ipynb` 파일을 찾습니다.
+3. 파일을 마우스 오른쪽 버튼으로 클릭하고 **연결 앱 → Google Colaboratory**를 선택합니다.
+4. 노트북을 열고 코드 셀을 순서대로 실행합니다.
+5. Google Drive 접근 권한이 요청되면 승인합니다.
 
 Google Colaboratory가 보이지 않는 경우 **연결 앱 → 앱 더 연결하기**에서 검색하여 연결합니다.
 
-### ③ 코드 실행
-
-- 각 코드 셀 왼쪽의 실행 버튼(▶)을 클릭합니다.
-- 첫 실행 시 Google Drive 접근 권한을 승인합니다.
-- 데이터 분석 결과와 그래프가 정상적으로 출력되는지 확인합니다.
-
-## 4. 실습 과제
+## 5. 실습 과제
 
 ### 실습 ① 생산관리 데이터 분석
 
@@ -127,42 +138,36 @@ AI가 제시한 계산 결과와 Colab 분석 결과를 비교하고 차이가 �
 4. 개선 방안 및 우선순위
 5. 추가로 확인해야 할 데이터
 
-## 5. 최종 결과물
+## 6. 최종 결과물 및 제출
 
-실습 완료 후 다음 결과물을 정리합니다.
+### 최종 결과물
 
 - 실행 결과가 포함된 Colab 노트북(`.ipynb`)
 - 생산계획 대비 실적 비교 차트
 - 불량 유형 파레토 차트
 - 생산·품질 개선 방안 요약
 
-### 결과물 공유 방법
+### 방법 ① Google Drive 링크 공유
 
-**방법 ① Google Drive 링크 공유 (기본)**
-
-1. 본인 Google Drive에 최종 Colab 노트북을 저장합니다.
+1. 본인 Google Drive에 완성한 Colab 노트북을 저장합니다.
 2. 공유 설정에서 링크가 있는 사용자의 열람 권한을 설정합니다.
 3. 교수자가 안내한 제출 경로로 링크를 전달합니다.
 
-**방법 ② 본인 GitHub에 업로드 (선택)**
+### 방법 ② 본인 GitHub에 업로드 (선택)
 
-GitHub 계정이 있는 학생은 본인 저장소를 생성하거나 이 저장소를 Fork하여 결과물을 업로드할 수 있습니다.
+1. 본인 GitHub 저장소를 생성하거나 이 저장소를 Fork합니다.
+2. 완성한 Colab 노트북, 차트, 분석 결과를 업로드합니다.
+3. 교수자가 안내한 제출 경로로 저장소 링크를 전달합니다.
 
-- 완성한 Colab 노트북
-- 분석 차트 이미지
-- 분석 결과와 개선 방안을 정리한 README
+GitHub 계정이 없는 학생은 Google Drive 링크로 결과물을 공유할 수 있습니다.
 
-업로드 후 저장소 링크를 제출합니다.
+## 7. 실습 시 유의사항
 
-GitHub 계정 생성 및 업로드는 필수가 아닙니다.
-
-## 6. 실습 시 유의사항
-
-- 본 실습의 제조 데이터는 교육용 가상 데이터입니다.
-- 생성형 AI의 분석 결과를 그대로 신뢰하지 않고 계산식과 원본 데이터를 검증합니다.
-- 불량률이나 생산 실적만으로 문제의 원인을 확정하지 않습니다.
+- 실습 데이터는 교육용 가상 데이터입니다.
+- 생성형 AI의 계산 결과는 원본 데이터와 비교하여 검증합니다.
+- 데이터에서 관찰된 현상과 추정한 원인을 구분합니다.
 - 실제 기업의 기밀자료나 개인정보를 공개형 AI 서비스에 업로드하지 않습니다.
-- 무료 AI 서비스의 사용량 제한이 발생하면 제공된 Colab 노트북으로 실습을 계속합니다.
+- 무료 AI 서비스의 사용량 제한이 발생하면 Google Colab을 활용합니다.
 
 ---
 

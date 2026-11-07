@@ -1,57 +1,175 @@
-# 생성형 AI 기반 생산·품질 데이터 분석 및 시각화 실습
+# 생성형 AI를 활용한 생산·품질 데이터 분석 및 시각화
 
-**대상:** 산업경영공학과 4학년 · **시간:** 80분 · **도구:** Google Gemini(무료) + Google Colab(무료)
+**Generative AI for Production and Quality Data Analysis & Visualization**
 
-## 학습 목표
-1. 생산계획 달성률, 불량률, 시간당 생산량, 시간가동률을 정확히 계산한다.
-2. 생산라인별 지표와 불량 유형 파레토 차트를 시각화한다.
-3. 생성형 AI의 분석 코드와 해석을 검증하고, 원인 **가설**과 추가 확인 데이터를 구분한다.
-4. 분석 결과를 근거로 현장 개선 제안 1건을 작성한다.
+**성결대학교 산업경영공학과 4학년 특강**
 
-## 실습 시작 (학생)
-1. Google 계정으로 [Google Colab](https://colab.research.google.com/)에 로그인합니다.
-2. GitHub에서 `notebooks/production_quality_workshop.ipynb`를 열고 **Open in Colab**을 선택하거나, Colab의 **파일 > 노트 업로드**로 해당 파일을 엽니다.
-3. 노트북의 **첫 번째 코드 셀**에서 `DATA_BASE`를 GitHub 저장소의 Raw URL로 수정합니다. 예: `https://raw.githubusercontent.com/OWNER/REPO/main/data/` (끝의 `/` 포함). 저장소 공개 후 사용하세요.
-4. 상단부터 셀을 순서대로 실행합니다. Gemini 무료 웹 버전은 [gemini.google.com](https://gemini.google.com/)에서 사용합니다.
-5. `docs/PROMPTS.md`를 따라 Gemini에서 프롬프트를 실행하고 `docs/WORKSHEET.md`에 결과를 작성합니다.
+- **강의:** 이현주 교수 | 한성대학교 AI응용학과
+- **교육 시간:** 90분
+- **실습 도구:** Google Colab, Google Gemini, Julius AI
 
-**대안:** GitHub Raw URL을 사용할 수 없다면 CSV 파일 두 개를 Colab 세션에 업로드한 후 첫 번째 셀의 `DATA_BASE`를 빈 문자열로 바꾸고 파일명만으로 읽도록 수정하세요. 무료 계정의 사용량·파일 업로드 제한에 대비해 **Gemini에 CSV 전체를 업로드하지 않아도** 실습할 수 있도록 설계했습니다.
+---
 
-## 80분 진행표
-| 시간 | 활동 | 산출물 |
+## 1. 특강 소개
+
+본 특강은 제조 현장의 생산·품질 데이터를 생성형 AI로 분석하고 시각화하여, 생산관리 및 품질관리 업무에 필요한 문제 해결 역량을 기르는 실습 중심 프로그램입니다.
+
+학생들은 가상의 제조기업 데이터를 활용하여 생산 실적과 불량률을 분석하고, 분석 결과를 바탕으로 현장 개선 방안을 도출합니다.
+
+### 학습 목표
+
+1. 생산·품질관리 업무에서 생성형 AI의 활용 방법 이해
+2. 생산계획 달성률, 불량률 등 주요 관리 지표 분석
+3. 생산 실적 비교 차트 및 불량 유형 파레토 차트 작성
+4. AI 분석 결과 검증 및 생산·품질 개선 방안 도출
+
+## 2. 실습자료 구성
+
+```text
+2026-GenerativeAI-Production-Quality/
+├── README.md
+├── data/
+│   ├── production_daily.csv
+│   └── defect_types.csv
+├── docs/
+│   ├── PROMPTS.md
+│   ├── JULIUS_AI_PRACTICE.md
+│   ├── STUDENT_WORKSHEET_DRIVE_GITHUB.md
+│   ├── WHY_THIS_PRACTICE.md
+│   └── WORKSHEET.md
+└── notebooks/
+    ├── production_quality_workshop_DRIVE.ipynb
+    └── production_quality_workshop.ipynb
+```
+
+### 주요 파일 안내
+
+| 구분 | 파일 | 내용 |
 |---|---|---|
-| 0~10분 | 품질·생산관리 직무와 생성형 AI의 역할 | 분석 목표 |
-| 10~20분 | Colab 실행, 데이터 구조와 프롬프트 확인 | 데이터 점검 |
-| 20~40분 | 생산 실적·품질 지표 계산 및 라인별 비교 | 지표 요약표·차트 |
-| 40~60분 | 불량 유형 파레토 분석, 라인 B의 변화 탐색 | 파레토·추세 차트 |
-| 60~75분 | Gemini 활용 해석, 개선 가설 및 검증 계획 | 개선 제안 |
-| 75~80분 | 계산·해석 검증, 제출 | 워크시트 |
+| 생산 데이터 | `production_daily.csv` | 생산계획 및 실적 분석 |
+| 품질 데이터 | `defect_types.csv` | 불량 유형 및 파레토 분석 |
+| 실습 노트북 | `production_quality_workshop_DRIVE.ipynb` | Google Drive 연동 실습 |
+| 실습 노트북 | `production_quality_workshop.ipynb` | 일반 Colab 실습 |
+| AI 활용 | `PROMPTS.md` | 생성형 AI 분석 프롬프트 |
+| AI 활용 | `JULIUS_AI_PRACTICE.md` | Julius AI 실습 안내 |
+| 실습 안내 | `STUDENT_WORKSHEET_DRIVE_GITHUB.md` | Google Drive 및 GitHub 활용 안내 |
+| 실습 안내 | `WORKSHEET.md` | 생산·품질 분석 실습 활동 |
+| 실습 안내 | `WHY_THIS_PRACTICE.md` | 실습 목적 및 업무 활용 |
 
-## 파일 구성
-- `data/production_daily.csv`: 20일 × 3개 생산라인의 가상 생산 데이터
-- `data/defect_types.csv`: 같은 기간의 불량 유형별 건수 (일자·라인별 불량 합계 일치)
-- `notebooks/production_quality_workshop.ipynb`: 실행 가능한 Colab 노트북
-- `docs/PROMPTS.md`: 단계별 Gemini 프롬프트
-- `docs/WORKSHEET.md`: 학생 실습지
-- `docs/INSTRUCTOR_GUIDE.md`: 교수자용 진행·검증 포인트
 
-## 지표 정의 및 해석 주의
-- **계획 달성률(%)** = 실제 생산량 / 계획 생산량 × 100
-- **불량률(%)** = 불량 수량 / 실제 생산량 × 100 (단순 불량 수량 기준, 개별 불량품 중복 집계 없음 가정)
-- **시간당 생산량** = 실제 생산량 / 실제 가동시간 (개/시간)
-- **시간가동률(%)** = (계획 가동시간 − 비가동시간) / 계획 가동시간 × 100
-- **집계 불량률**은 일별 불량률의 단순 평균이 아닌 `불량 수량 합 / 실제 생산량 합`으로 계산합니다.
-- 시간가동률은 여기서 정의한 **가동시간 비율**이며 OEE 전체를 뜻하지 않습니다.
-- 데이터는 **교육용 합성 데이터**입니다. 원인·인과관계나 통계적 관리 상태를 확정할 수 없습니다.
+## 3. 실습자료 다운로드
 
-## 무료 사용 조건
-Colab 무료 런타임 및 Gemini 무료 계정은 이용량·기능에 제한이 있을 수 있습니다. 유료 API 키, 결제 계정, 별도 설치는 요구하지 않습니다. 노트북 분석은 Gemini 접속 없이도 실행 가능합니다.
+1. GitHub 저장소 상단의 **Code** 버튼을 클릭합니다.
+2. **Download ZIP**을 선택합니다.
+3. 다운로드한 ZIP 파일의 압축을 해제합니다.
+4. `data`, `docs`, `notebooks` 폴더를 확인합니다.
 
-## 추가 실습: Julius AI 및 현장 문제 정의
-- `docs/WHY_THIS_PRACTICE.md`: 실습의 필요성, 직무 의사결정, 80분 운영
-- `docs/JULIUS_AI_PRACTICE.md`: Julius AI 무료 계정 기반 자연어 분석·시각화 및 Colab 검증
-- 개정 강의 PPT: `성결대_생성형AI_생산품질_특강_개정_JuliusAI.pptx` (별도 배포)
+GitHub 계정이 없어도 공개 저장소의 자료를 다운로드할 수 있습니다.
 
-## 학생용 Drive·GitHub 실습 안내
-- `docs/STUDENT_WORKSHEET_DRIVE_GITHUB.md`: Colab 초보/경험자별 절차, GitHub 다운로드·Fork·개인 저장소 업로드, 단계별 실습
-- `notebooks/production_quality_workshop_DRIVE.ipynb`: 본인 Google Drive에 업로드한 CSV를 읽는 실행용 노트북
+## 4. Google Colab 실습 준비
+
+### ① 본인 Google Drive에 자료 저장
+
+Google Drive에 `production_quality_ai_workshop` 폴더를 생성하고 다음과 같이 실습자료를 업로드합니다.
+
+```text
+내 드라이브/
+└── production_quality_ai_workshop/
+    ├── data/
+    │   ├── production_daily.csv
+    │   └── defect_types.csv
+    └── notebooks/
+        ├── production_quality_workshop_DRIVE.ipynb
+        └── production_quality_workshop.ipynb
+```
+
+### ② Google Colab 실행
+
+1. [Google Drive](https://drive.google.com/)에 로그인합니다.
+2. `notebooks` 폴더에서 `production_quality_workshop_DRIVE.ipynb` 파일을 찾습니다.
+3. 파일을 마우스 오른쪽 버튼으로 클릭하고 **연결 앱 → Google Colaboratory**를 선택합니다.
+4. 노트북을 열고 코드 셀을 순서대로 실행합니다.
+5. Google Drive 접근 권한이 요청되면 승인합니다.
+
+Google Colaboratory가 보이지 않는 경우 **연결 앱 → 앱 더 연결하기**에서 검색하여 연결합니다.
+
+## 5. 실습 과제
+
+### 실습 ① 생산관리 데이터 분석
+
+**목적:** 생산계획 대비 실적을 분석하여 생산 차질이 발생한 생산라인을 파악합니다.
+
+- 생산라인별 계획 생산량과 실제 생산량 비교
+- 생산계획 달성률 계산
+- 시간당 생산량 비교
+- 생산 실적 비교 차트 작성
+
+**확인할 사항:** 생산계획 달성률이 가장 낮은 라인은 어디이며, 어떤 추가 데이터가 필요할까요?
+
+### 실습 ② 품질관리 데이터 분석
+
+**목적:** 불량 데이터를 분석하여 품질 개선이 필요한 생산라인과 주요 불량 유형을 파악합니다.
+
+- 생산라인별 불량률 계산
+- 불량 유형별 발생 건수 분석
+- 파레토 차트 작성
+- 주요 불량 유형과 개선 우선순위 확인
+
+**확인할 사항:** 어떤 불량 유형을 우선적으로 관리해야 하며, 그 이유는 무엇일까요?
+
+### 실습 ③ 생성형 AI를 활용한 분석
+
+[Julius AI](https://julius.ai/) 또는 [Google Gemini](https://gemini.google.com/)를 활용하여 생산·품질 데이터를 분석합니다.
+
+**프롬프트 예시**
+
+> 제공한 생산·품질 데이터를 분석해 주세요. 생산라인별 생산계획 달성률과 불량률을 계산하고 비교 차트를 작성해 주세요. 문제가 있는 생산라인을 데이터에 근거하여 설명하고, 추가로 확인해야 할 사항을 제시해 주세요. 데이터만으로 확인할 수 없는 원인은 추정으로 구분해 주세요.
+
+AI가 제시한 계산 결과와 Colab 분석 결과를 비교하고 차이가 있다면 원인을 확인합니다.
+
+### 실습 ④ 생산·품질 개선 방안 도출
+
+앞선 분석 결과를 바탕으로 다음 항목을 정리합니다.
+
+1. 주요 생산·품질 문제
+2. 데이터 분석 결과 및 근거
+3. 가능한 원인 가설
+4. 개선 방안 및 우선순위
+5. 추가로 확인해야 할 데이터
+
+## 6. 최종 결과물 및 제출
+
+### 최종 결과물
+
+- 실행 결과가 포함된 Colab 노트북(`.ipynb`)
+- 생산계획 대비 실적 비교 차트
+- 불량 유형 파레토 차트
+- 생산·품질 개선 방안 요약
+
+### 방법 ① Google Drive 링크 공유
+
+1. 본인 Google Drive에 완성한 Colab 노트북을 저장합니다.
+2. 공유 설정에서 링크가 있는 사용자의 열람 권한을 설정합니다.
+3. 교수자가 안내한 제출 경로로 링크를 전달합니다.
+
+### 방법 ② 본인 GitHub에 업로드 (선택)
+
+1. 본인 GitHub 저장소를 생성하거나 이 저장소를 Fork합니다.
+2. 완성한 Colab 노트북, 차트, 분석 결과를 업로드합니다.
+3. 교수자가 안내한 제출 경로로 저장소 링크를 전달합니다.
+
+GitHub 계정이 없는 학생은 Google Drive 링크로 결과물을 공유할 수 있습니다.
+
+## 7. 실습 시 유의사항
+
+- 실습 데이터는 교육용 가상 데이터입니다.
+- 생성형 AI의 계산 결과는 원본 데이터와 비교하여 검증합니다.
+- 데이터에서 관찰된 현상과 추정한 원인을 구분합니다.
+- 실제 기업의 기밀자료나 개인정보를 공개형 AI 서비스에 업로드하지 않습니다.
+- 무료 AI 서비스의 사용량 제한이 발생하면 Google Colab을 활용합니다.
+
+---
+
+**성결대학교 산업경영공학과 | 생성형 AI 생산·품질 데이터 분석 특강**
+
+이현주 교수 · 한성대학교 AI응용학과
